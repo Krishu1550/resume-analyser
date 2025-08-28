@@ -5,6 +5,7 @@ import { fromPath } from "pdf2pic";
  * @param pdfPath - Local path to PDF
  * @param pageNumber - Page number to convert (1-indexed)
  * @returns Promise<Buffer> - PNG image buffer
+ * heeloo
  */
  export async function pdfPageToImage(pdfPath: string, pageNumber: number = 1): Promise<Buffer> {
   const options = {
