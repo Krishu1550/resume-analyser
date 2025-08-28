@@ -54,7 +54,10 @@ import { fromPath } from "pdf2pic";
   // Fallback attempt to create a Buffer from the value
   try {
     return Buffer.from(result as any);
+
+   
   } catch (e) {
-    throw new Error("Unable to convert pdf2pic response to Buffer");
+    console.error("Failed to convert PDF page to image buffer:", e);
+    throw new Error("Failed to convert PDF page to image buffer");
   }
 }
