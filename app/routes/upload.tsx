@@ -1,4 +1,4 @@
-import {type FormEvent, useState} from 'react'
+import {type FormEvent, useEffect, useState} from 'react'
 
 import {FileUploader} from "../component/index";
 import {usePuterStore} from "~/lib/puter";
@@ -8,11 +8,17 @@ import {generateUUID} from "~/lib/utils";
 import {prepareInstructions} from "../../contants";
 
 const Upload = () => {
-    const { auth, isLoading, fs, ai, kv } = usePuterStore();
+    const { auth, isLoading, fs, ai, kv,init } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
     const [file, setFile] = useState<File | null>(null);
+    useEffect(() => {
+        init();
+        if (!auth.isAuthenticated) {  
+            navigate("/auth?next=/upload");
+        }
+    }, [isLoading]);
 
     const handleFileSelect = (file: File | null) => {
         setFile(file)

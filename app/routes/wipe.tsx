@@ -20,6 +20,9 @@ const WipeApp = () => {
     useEffect(() => {
         init(); 
         loadFiles();
+        if (!auth.isAuthenticated) {  
+            navigate("/auth?next=/wipe");
+        }
     }, []);
 
     useEffect(() => {
